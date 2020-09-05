@@ -14,42 +14,35 @@
     <title>Code Quiz</title>
   </head>
   <body>
-
     <div class="jumbotron">
-
       <h1 class="text-center">Code Quiz</h1>
-  
       <div class="text-center">
-  
-        <!-- Here we have our button for generating random numbers (#random-button) -->
-        <button id="random-button" class="btn btn-primary btn-lg fa fa-question">Start</button>
-  
+        <span>Time:</span>
+        <span class="timeleft text-info mt-2 timeleft"></span>
       </div>
-  
     </div>
-    <!-- Header -->
-    <header class="container bg-info clearfix mr-xs-0 ml-xs-0">
-      <h1 class="float-left bg-info text-white mt-2">Code Quiz</h1>
-      <span class="timeleft float-right text-white mt-2 timeleft">test</span>
-    </header>
     <!-- Main content -->
     <main class="container d-sm-flex mr-xs-0 ml-xs-0">
       <div class="row">
         <div class="col-sm">
           <div class="card bg-white border-0 mt-5">
             <div class="card-header text-info bg-white">
-              <p class="text-info" id="question">Question</p>
-              <ol class="options">
-
-              </ol>
+              <p class="text-info" id="question">
+                Start the quiz by clicking the start button below.
+              </p>
+              <ol class="options"></ol>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-6">
-                    <span class="answeralert"></span>
-                  </div>
+                  <span class="answeralert"></span>
+                </div>
                 <div class="col-sm-6">
-                  <input type="button" value="Start Quiz" class="bg-info text-white startbutton"/>
+                  <input
+                    type="button"
+                    value="Start Quiz"
+                    class="bg-info text-white startbutton"
+                  />
                 </div>
               </div>
             </div>
