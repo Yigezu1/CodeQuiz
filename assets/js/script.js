@@ -3,6 +3,7 @@ var options = document.querySelector(".options");
 var answeralert = document.querySelector(".answeralert");
 var startBtn = document.querySelector(".startbutton");
 var questionPEl = document.querySelector("#question");
+var optionsDivEl = document.querySelector(".options-div");
 var score = 0;
 var el;
 var questions = [
@@ -27,15 +28,20 @@ var questions = [
     opt: ["option1", "option2", "option3", "option4"],
   },
 ];
+var tim=0;
+var checkEnd = 0;
 var correctAnswer = ["option1", "option4", "option3", "option1", "option2"];
 function timeInterval() {
-  var tim = 75;
+  tim = 75;
   timeLeft.textContent = 75 + "s";
   setInterval(function () {
     if (tim > 0) {
       tim--;
       timeLeft.textContent = tim + "s";
     } else {
+        if(checkEnd ===0){
+            updateDivEl();
+        }
       clearInterval(setInterval);
     }
   }, 1000);
@@ -60,7 +66,7 @@ options.addEventListener("click", function (event) {
     id++;
     score+=6;
     answeralert.textContent = "Correct!";
-    if (id < questions.length) {
+    if (id < questions.length && tim > 0) {
       questionPEl.textContent = questions[id]["quo"];
       questionPEl.setAttribute("id", id);
       options.innerHTML="";
@@ -70,11 +76,14 @@ options.addEventListener("click", function (event) {
         el.textContent = va[i];
         options.appendChild(el);
       }
+    }else{
+        checkEnd =1;
+        updateDivEl();
     }
   } else {
     answeralert.textContent = "Wrong!";
     id++;
-    if (id < questions.length) {
+    if (id < questions.length && tim > 0) {
       questionPEl.textContent = questions[id]["quo"];
       questionPEl.setAttribute("id", id);
       options.innerHTML="";
@@ -85,6 +94,13 @@ options.addEventListener("click", function (event) {
         el.textContent = va[i];
         options.appendChild(el);
       }
+    }else{
+        checkEnd = 1;
+        updateDivEl();
     }
   }
 });
+function updateDivEl(){
+    optionsDivEl.innerHTML="<span type='button'>Start Again </span> \t <span type='button'>Clear Score </span>";
+    questionPEl.innerHTML = "<span> All Done!</span>";
+}
