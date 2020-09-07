@@ -75,6 +75,10 @@ options.addEventListener("click", function (event) {
         var va = questions[id]["opt"];
         el.textContent = va[i];
         options.appendChild(el);
+        var Timeout = setTimeout(function(){
+            answeralert.textContent = "";
+            clearTimeout(Timeout);
+        }, 500);
       }
     } else {
       checkEnd = 1;
@@ -82,6 +86,7 @@ options.addEventListener("click", function (event) {
     }
   } else {
     answeralert.textContent = "Wrong!";
+    tim -=10;
     id++;
     if (id < questions.length && tim > 0) {
       questionPEl.textContent = questions[id]["quo"];
@@ -98,6 +103,10 @@ options.addEventListener("click", function (event) {
       checkEnd = 1;
       updateDivEl();
     }
+    var Timeout = setTimeout(function(){
+        answeralert.textContent = "";
+        clearTimeout(Timeout);
+    }, 500);
   }
 });
 function updateDivEl() {
