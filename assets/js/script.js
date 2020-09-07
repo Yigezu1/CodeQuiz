@@ -6,31 +6,35 @@ var questionPEl = document.querySelector("#question");
 var optionsDivEl = document.querySelector(".options-div");
 var score = 0;
 var el;
+//Questions array
 var questions = [
   {
     quo: "This is the first question",
-    opt: ["option1", "option2", "option3", "option4"],
+    opt: ["C#", "JavaScript", "HTML5", "CSS3"],
   },
   {
     quo: "This is the second question",
-    opt: ["option1", "option2", "option3", "option4"],
+    opt: ["CSS3", "jQuery", "JavaScript", "HTML5"],
   },
   {
     quo: "This is the third question",
-    opt: ["option1", "option2", "option3", "option4"],
+    opt: ["jQuery", "JavaScript", "CSS3", "HTML5"],
   },
   {
     quo: "This is the forth question",
-    opt: ["option1", "option2", "option3", "option4"],
+    opt: ["C#", "JavaScript", "HTML5", "CSS3"],
   },
   {
     quo: "This is the fifth question",
-    opt: ["option1", "option2", "option3", "option4"],
+    opt: ["jQuery", "JavaScript", "CSS3", "HTML5"],
   },
 ];
 var tim = 0;
+//This variable will be used to track if the user answered the last question or not.
 var checkEnd = 0;
-var correctAnswer = ["option1", "option4", "option3", "option1", "option2"];
+// Answer array
+var correctAnswer = ["JavaScript", "jQuery", "HTML5", "CSS3", "JavaScript"];
+/* This time interval function will track the time for the quiz */
 function timeInterval() {
   tim = 75;
   timeLeft.textContent = 75 + "s";
@@ -46,7 +50,7 @@ function timeInterval() {
     }
   }, 1000);
 }
-
+/* When the user clicks the start buttom to start his/her quiz this fuction will be called */
 startBtn.addEventListener("click", function () {
   questionPEl.textContent = questions[0]["quo"];
   questionPEl.setAttribute("id", "0");
@@ -59,6 +63,7 @@ startBtn.addEventListener("click", function () {
   }
   timeInterval();
 });
+/* This event delegate will be called when the user made his choice for the answer of each question */
 options.addEventListener("click", function (event) {
   var id = parseInt(questionPEl.getAttribute("id"));
   var evTargetval = event.target.textContent;
@@ -75,9 +80,9 @@ options.addEventListener("click", function (event) {
         var va = questions[id]["opt"];
         el.textContent = va[i];
         options.appendChild(el);
-        var Timeout = setTimeout(function(){
-            answeralert.textContent = "";
-            clearTimeout(Timeout);
+        var Timeout = setTimeout(function () {
+          answeralert.textContent = "";
+          clearTimeout(Timeout);
         }, 500);
       }
     } else {
@@ -86,7 +91,7 @@ options.addEventListener("click", function (event) {
     }
   } else {
     answeralert.textContent = "Wrong!";
-    tim -=10;
+    tim -= 10;
     id++;
     if (id < questions.length && tim > 0) {
       questionPEl.textContent = questions[id]["quo"];
@@ -103,12 +108,13 @@ options.addEventListener("click", function (event) {
       checkEnd = 1;
       updateDivEl();
     }
-    var Timeout = setTimeout(function(){
-        answeralert.textContent = "";
-        clearTimeout(Timeout);
+    var Timeout = setTimeout(function () {
+      answeralert.textContent = "";
+      clearTimeout(Timeout);
     }, 500);
   }
 });
+// This function will be called when the time is up or the user finished questions and updates the user interface with new elements
 function updateDivEl() {
   optionsDivEl.innerHTML =
     "<p id='score'></p>" +
@@ -119,17 +125,17 @@ function updateDivEl() {
   var submitEl = document.querySelector("#submit");
   submitEl.addEventListener("click", addInitialsWithScore);
   var tryagainEl = document.querySelector("#tryagain");
-  tryagainEl.addEventListener("click", function(event){
-      event.stopPropagation();
-      location.reload();
+  tryagainEl.addEventListener("click", function (event) {
+    event.stopPropagation();
+    location.reload();
   });
   var clearEl = document.querySelector("#clearscore");
-  clearEl.addEventListener("click", function(event){
+  clearEl.addEventListener("click", function (event) {
     event.stopPropagation();
     document.querySelector("#scoreValue").value = "";
   });
 }
-
+// submit event handler function
 function addInitialsWithScore(event) {
   event.preventDefault();
   var inVal = document.querySelector("#scoreValue");
@@ -139,8 +145,14 @@ function addInitialsWithScore(event) {
     var inValScore = inVal.value;
     inVal.value = "1. " + inValScore + "_" + score;
     localStorage.setItem("score", inVal.value);
+    var highS = localStorage.getItem("HighScore");
+    if (highS) {
+      if (parseInt(highS) < score) {
+        localStorage.setItem("Highst Score", score);
+      }
+    } else {
+      localStorage.setItem("Highst Score", score);
+    }
     document.querySelector("#submit").classList = "d-none";
   }
 }
-
-
