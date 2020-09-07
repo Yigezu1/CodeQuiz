@@ -34,15 +34,15 @@ var correctAnswer = ["option1", "option4", "option3", "option1", "option2"];
 function timeInterval() {
   tim = 75;
   timeLeft.textContent = 75 + "s";
-  setInterval(function () {
-    if (tim > 0) {
+  var timerInterval = setInterval(function () {
+    if (tim > 0 && checkEnd === 0) {
       tim--;
       timeLeft.textContent = tim + "s";
     } else {
       if (checkEnd === 0) {
         updateDivEl();
       }
-      clearInterval(setInterval);
+      clearInterval(timerInterval);
     }
   }, 1000);
 }
@@ -104,11 +104,21 @@ function updateDivEl() {
   optionsDivEl.innerHTML =
     "<p id='score'></p>" +
     "<form><label for='scorevalue'>Enter Initials: </label><input type='text' name='scorevalue' class='ml-2' id='scoreValue'><button class='ml-3'id='submit'>Submit</button></input></form>" +
-    "<span type='button' class='btn-info mt-2 p-2'>Try Again </span> \t \t <span type='button' class='btn-info mt-2 p-2 ml-2'>Clear Score </span>";
+    "<span type='button' class='btn-info mt-2 p-2' id='tryagain'>Try Again </span> \t \t <span type='button' class='btn-info mt-2 p-2 ml-2' id='clearscore'>Clear Score </span>";
   questionPEl.innerHTML = "<span> All Done!</span>";
   document.querySelector("#score").textContent = "Your Score is: " + score;
   var submitEl = document.querySelector("#submit");
-submitEl.addEventListener("click", addInitialsWithScore);
+  submitEl.addEventListener("click", addInitialsWithScore);
+  var tryagainEl = document.querySelector("#tryagain");
+  tryagainEl.addEventListener("click", function(event){
+      event.stopPropagation();
+      location.reload();
+  });
+  var clearEl = document.querySelector("#clearscore");
+  clearEl.addEventListener("click", function(event){
+    event.stopPropagation();
+    document.querySelector("#scoreValue").value = "";
+  });
 }
 
 function addInitialsWithScore(event) {
@@ -119,5 +129,9 @@ function addInitialsWithScore(event) {
   } else {
     var inValScore = inVal.value;
     inVal.value = "1. " + inValScore + "_" + score;
+    localStorage.setItem("score", inVal.value);
+    document.querySelector("#submit").classList = "d-none";
   }
 }
+
+
