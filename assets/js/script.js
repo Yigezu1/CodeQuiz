@@ -50,7 +50,7 @@ function timeInterval() {
 startBtn.addEventListener("click", function () {
   questionPEl.textContent = questions[0]["quo"];
   questionPEl.setAttribute("id", "0");
-  startBtn.setAttribute("Class", "hide");
+  startBtn.setAttribute("Class", "d-none");
   for (var i = 0; i < questions[0]["opt"].length; i++) {
     el = document.createElement("li");
     var va = questions[0]["opt"];
@@ -101,6 +101,6 @@ options.addEventListener("click", function (event) {
   }
 });
 function updateDivEl(){
-    optionsDivEl.innerHTML="<span type='button'>Start Again </span> \t <span type='button'>Clear Score </span>";
+    optionsDivEl.innerHTML="<span type='button'>Try Again </span> \t \t <span type='button'>Clear Score </span>";
     questionPEl.innerHTML = "<span> All Done!</span>";
 }
