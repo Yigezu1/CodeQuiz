@@ -1,1 +1,4 @@
 # CodeQuiz
+In this work I have utilized Bootsrap to design responsive user interface.
+Used JS to add interactivity to the code quiz. There are five questions, when the user click the start button he/she presented with the first question. And the time starts counting down from 75s. When the user asnwers correctly, his score will increase by 6 and presented with the next question. If the users answer was wrong, his/her score won't change but the time will decrease by 10s and will be presented with the next question.
+If the time is up and/or the user asnwered all the questions, then he/she will be directed to the last page when she/he has the option to create the recored of the score by providing his/her initials. The app also records the highest score that the user has ever scored. From the last page, the user has the option to submit, try again and/or clear the score valuses.
