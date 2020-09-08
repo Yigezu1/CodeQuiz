@@ -4,6 +4,8 @@ var answeralert = document.querySelector(".answeralert");
 var startBtn = document.querySelector(".startbutton");
 var questionPEl = document.querySelector("#question");
 var optionsDivEl = document.querySelector(".options-div");
+var scoreViewerEl = document.querySelector("#scoreViewer");
+var viewerBtn = document.querySelector(".viewerBtn");
 var score = 0;
 var el;
 //Questions array
@@ -118,8 +120,8 @@ options.addEventListener("click", function (event) {
 function updateDivEl() {
   optionsDivEl.innerHTML =
     "<p id='score'></p>" +
-    "<form><label for='scorevalue'>Enter Initials: </label><input type='text' name='scorevalue' class='ml-2' id='scoreValue'><button class='ml-3'id='submit'>Submit</button></input></form>" +
-    "<span type='button' class='btn-info mt-2 p-2' id='tryagain'>Try Again </span> \t \t <span type='button' class='btn-info mt-2 p-2 ml-2' id='clearscore'>Clear Score </span>";
+    "<form><label for='scorevalue'>Enter Initials: </label><input type='text' name='scorevalue' class='ml-xs-0 mb-3 ml-md-3' id='scoreValue' /><button class='btn btn-info ml-xs-0  ml-md-3'id='submit'>Submit</button></form>" +
+    "<span type='button' class='btn btn-info mt-2 p-2' id='tryagain'>Try Again </span> \t \t <span type='button' class='btn btn-info mt-2 p-2 ml-2' id='clearscore'>Clear Scores </span>";
   questionPEl.innerHTML = "<span> All Done!</span>";
   document.querySelector("#score").textContent = "Your Score is: " + score;
   var submitEl = document.querySelector("#submit");
@@ -133,6 +135,7 @@ function updateDivEl() {
   clearEl.addEventListener("click", function (event) {
     event.stopPropagation();
     document.querySelector("#scoreValue").value = "";
+    localStorage.removeItem("Highest Score");
   });
 }
 // submit event handler function
@@ -145,14 +148,23 @@ function addInitialsWithScore(event) {
     var inValScore = inVal.value;
     inVal.value = "1. " + inValScore + "_" + score;
     localStorage.setItem("score", inVal.value);
-    var highS = localStorage.getItem("HighScore");
+    var highS = localStorage.getItem("Highest Score");
     if (highS) {
       if (parseInt(highS) < score) {
-        localStorage.setItem("Highst Score", score);
+        localStorage.setItem("Highest Score", score);
       }
     } else {
-      localStorage.setItem("Highst Score", score);
+      localStorage.setItem("Highest Score", score);
     }
     document.querySelector("#submit").classList = "d-none";
   }
 }
+// This is button click event handler to see the highest score.
+viewerBtn.addEventListener("click",function(){
+var HSval = localStorage.getItem("Highest Score");
+if(HSval){
+    scoreViewerEl.textContent ="Your highest score thus far is : " + HSval; 
+}else{
+    scoreViewerEl.textContent = "Score value not available";
+}
+});

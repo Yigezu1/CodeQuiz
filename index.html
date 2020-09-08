@@ -10,23 +10,33 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <style>
+      li {
+        cursor: pointer;
+        margin-top: 3px;
+      }
+    </style>
     <title>Code Quiz</title>
   </head>
   <body>
-    <Header class="jumbotron">
+    <header class="jumbotron">
       <h1 class="text-center">Code Quiz</h1>
       <div class="text-center">
         <span>Time:</span>
-        <span class="timeleft text-info mt-2 timeleft"></span>
+        <span class="timeleft text-info mt-2 timeleft"></span>        
       </div>
-    </Header>
+      <div class="text-left"> 
+        <span class="text-left btn btn-light viewerBtn">View Highest Score</span>
+        <p id = "scoreViewer"></p>
+      </div>
+    </header>
     <!-- Main content -->
     <main class="container d-sm-flex mr-xs-0 ml-xs-0">
       <div class="row">
         <div class="col-sm">
           <div class="card bg-white border-0 mt-5">
-            <div class="card-header text-info bg-white">
-              <p class="text-info" id="question">
+            <div class="card-header text-dark bg-white">
+              <p class="text-dark" id="question">
                 Start the quiz by clicking the start button below.
               </p>
               <div class="options-div">
@@ -42,7 +52,7 @@
                   <input
                     type="button"
                     value="Start Quiz"
-                    class="bg-info text-white startbutton"
+                    class="btn btn-info bg-info text-white startbutton"
                   />
                 </div>
               </div>
