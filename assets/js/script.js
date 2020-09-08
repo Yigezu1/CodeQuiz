@@ -11,23 +11,23 @@ var el;
 //Questions array
 var questions = [
   {
-    quo: "This is the first question",
+    quo: "This is the first question. Make your choice by clicking one of the options.",
     opt: ["C#", "JavaScript", "HTML5", "CSS3"],
   },
   {
-    quo: "This is the second question",
+    quo: "In this second question of your code quiz guess the solution by clicking in one of the choices below.",
     opt: ["CSS3", "jQuery", "JavaScript", "HTML5"],
   },
   {
-    quo: "This is the third question",
+    quo: "Make your guess for the solution for the third question by clicking in one of the options given below.",
     opt: ["jQuery", "JavaScript", "CSS3", "HTML5"],
   },
   {
-    quo: "This is the forth question",
+    quo: "Make a guess for the forth question of this code quiz.",
     opt: ["C#", "JavaScript", "HTML5", "CSS3"],
   },
   {
-    quo: "This is the fifth question",
+    quo: "This is the last question of your code quiz. If you answer correctly all the questions, you will score 30. Guess for this last question.",
     opt: ["jQuery", "JavaScript", "CSS3", "HTML5"],
   },
 ];
